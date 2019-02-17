@@ -13,19 +13,19 @@
 # Change the settings, so they match yours
 ####################################################
 
-include $(PS2SDK)/Defs.make
+include $(PS2SDKUJ)/Defs.make
 
 ifeq (x$(GSKIT), x)
-GSKIT = $(PS2DEV)/gsKit
+GSKIT = $(PS2DEVUJ)/gsKit
 endif
 
 LIBGSKIT = $(GSKITSRC)/lib/libgskit.a
 LIBDMAKIT = $(GSKITSRC)/lib/libdmakit.a
 LIBGSKIT_TOOLKIT = $(GSKITSRC)/lib/libgskit_toolkit.a
 # GSKIT_DEBUG = 1
-# LIBJPEG = $(PS2SDK)/ports
-# LIBTIFF = $(PS2SDK)/ports
-# LIBPNG = $(PS2SDK)/ports
-# ZLIB = $(PS2SDK)/ports
+# LIBJPEG = $(PS2SDKUJ)/ports
+# LIBTIFF = $(PS2SDKUJ)/ports
+# LIBPNG = $(PS2SDKUJ)/ports
+# ZLIB = $(PS2SDKUJ)/ports
 
 PS2_IP = 192.168.1.10

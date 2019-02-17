@@ -22,5 +22,5 @@ endif
 EE_INCS += -I$(GSKITSRC)/ee/gs/include -I$(GSKITSRC)/ee/dma/include
 
 # linker flags
-EE_LIB_DIRS += -L$(PS2SDK)/ee/lib
+EE_LIB_DIRS += -L$(PS2SDKUJ)/ee/lib
 EE_LDFLAGS += $(EE_LIB_DIRS)

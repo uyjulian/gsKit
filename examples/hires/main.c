@@ -15,7 +15,7 @@
 
 #define HIRES_MODE
 //#define TEX_BG
-#define FHD_BG
+// #define FHD_BG
 #define DYNAMIC_DITHERING
 
 
@@ -279,7 +279,7 @@ int main(int argc, char *argv[])
 	iYOffset = 0;
 	iPassCount = 3;
 #endif
-#if 1
+#if 0
 	gsGlobal->Mode = GS_MODE_DTV_1080I;
 	gsGlobal->Interlace = GS_INTERLACED;
 	//gsGlobal->Field = GS_FIELD;
@@ -290,7 +290,7 @@ int main(int argc, char *argv[])
 	iYOffset = 0;
 	iPassCount = 3;
 #endif
-#if 0
+#if 1
 	gsGlobal->Mode = GS_MODE_VGA_1280_60;
 	gsGlobal->Interlace = GS_NONINTERLACED;
 	gsGlobal->Field = GS_FRAME;
