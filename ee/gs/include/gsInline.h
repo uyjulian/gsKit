@@ -45,19 +45,11 @@ static inline void *_gsKit_heap_alloc(GSQUEUE *q, int qsize, int bsize, int type
 		q->same_obj = 0;
 	}
 
-<<<<<<< HEAD
-	gsGlobal->CurQueue->same_obj++;
-	gsGlobal->CurQueue->last_type = type;
-	gsGlobal->CurQueue->tag_size += qsize;
-	void *p_heap = gsGlobal->CurQueue->pool_cur;
-	gsGlobal->CurQueue->pool_cur = ((u8*)gsGlobal->CurQueue->pool_cur) + bsize;
-=======
 	q->same_obj++;
 	q->last_type = type;
 	q->tag_size += qsize;
 	void *p_heap = q->pool_cur;
-	(u8*)q->pool_cur += bsize;
->>>>>>> 553ea4ad62ff03c61e7f5a295a1992b9e92946ba
+	q->pool_cur = (u8*)q->pool_cur + bsize;
 
 	return p_heap;
 }
@@ -90,17 +82,10 @@ static inline void *_gsKit_heap_alloc_dma(GSQUEUE *q, int qsize, int bsize)
 	q->last_type = GIF_RESERVED;
 	q->same_obj = 0;
 
-<<<<<<< HEAD
-	void *p_heap = gsGlobal->CurQueue->pool_cur;
-	gsGlobal->CurQueue->pool_cur = (u8*)gsGlobal->CurQueue->pool_cur + bsize;
-	gsGlobal->CurQueue->dma_tag = gsGlobal->CurQueue->pool_cur;
-	gsGlobal->CurQueue->pool_cur = (u8*)gsGlobal->CurQueue->pool_cur + 16;
-=======
 	void *p_heap = q->pool_cur;
-	(u8*)q->pool_cur += bsize;
+	q->pool_cur = (u8*)q->pool_cur + bsize;
 	q->dma_tag = q->pool_cur;
-	(u8*)q->pool_cur += 16;
->>>>>>> 553ea4ad62ff03c61e7f5a295a1992b9e92946ba
+	q->pool_cur = (u8*)q->pool_cur + 16;
 
 	return p_heap;
 }
