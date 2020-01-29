@@ -8,21 +8,21 @@
 
 EE_CC_VERSION != $(EE_CC) -dumpversion 2>&1
 
-EE_INCS := $(EE_INCS) -I$(PS2SDK)/ee/include -I$(PS2SDK)/common/include -I$(GSKIT)/ee/dma/include -I$(GSKIT)/ee/gs/include
+EE_INCS := $(EE_INCS) -I$(PS2SDK)/ee/include -I$(PS2SDK)/common/include -I$(GSKITSRC)/ee/dma/include -I$(GSKITSRC)/ee/gs/include
 
 # C compiler flags
 EE_CFLAGS := -D_EE -O2 -G0 -Wall $(EE_CFLAGS)
 
-#ifdef GSKIT_DEBUG
-#	EE_CFLAGS += -DGSKIT_DEBUG
-#endif
+ifdef GSKIT_DEBUG
+	EE_CFLAGS += -DGSKIT_DEBUG
+endif
 
 # C++ compiler flags
 EE_CXXFLAGS := -D_EE -O2 -G0 -Wall $(EE_CXXFLAGS)
 
-#ifdef GSKIT_DEBUG
-#	EE_CXXFLAGS += -DGSKIT_DEBUG
-#endif
+ifdef GSKIT_DEBUG
+	EE_CXXFLAGS += -DGSKIT_DEBUG
+endif
 
 # Linker flags
 #EE_LDFLAGS := $(EE_LDFLAGS)
@@ -57,13 +57,13 @@ $(EE_OBJS_DIR)%.o: $(EE_SRC_DIR)%.s
 	$(EE_AS) $(EE_ASFLAGS) $< -o $@
 
 $(EE_LIB_DIR):
-	mkdir $(EE_LIB_DIR)
+	mkdir -p $(EE_LIB_DIR)
 
 $(EE_BIN_DIR):
-	mkdir $(EE_BIN_DIR)
+	mkdir -p $(EE_BIN_DIR)
 
 $(EE_OBJS_DIR):
-	mkdir $(EE_OBJS_DIR)
+	mkdir -p $(EE_OBJS_DIR)
 
 ifeq ($(use_cpp), true)
 $(EE_BIN): $(EE_OBJS) $(PS2SDK)/ee/startup/crt0.o
