@@ -425,6 +425,7 @@ if(BUILD_EXAMPLES)
 			packet
 			dma
 		)
+		file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/examples/hires/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR} FILES_MATCHING REGEX "\\.(bmp|dat|fnt|jpg|png|ppm|raw|s|tiff)$")
 	endif()
 
 	if("linuz-texture" IN_LIST BUILD_EXAMPLES)
@@ -436,6 +437,7 @@ if(BUILD_EXAMPLES)
 		target_link_libraries(linuz-texture
 			${GSKIT_SAMPLE_LIBS}
 		)
+		file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/examples/linuz-texture/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR} FILES_MATCHING REGEX "\\.(bmp|dat|fnt|jpg|png|ppm|raw|s|tiff)$")
 	endif()
 
 	if("png-texture" IN_LIST BUILD_EXAMPLES)
@@ -445,5 +447,6 @@ if(BUILD_EXAMPLES)
 		target_link_libraries(png-texture
 			${GSKIT_SAMPLE_LIBS}
 		)
+		file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/examples/png-texture/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR} FILES_MATCHING REGEX "\\.(bmp|dat|fnt|jpg|png|ppm|raw|s|tiff)$")
 	endif()
 endif()
