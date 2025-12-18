@@ -38,4 +38,13 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: gsKit-samples-${{ steps.slug.outputs.sha8 }}
-        path: build/*.elf
+        path: |
+          build/**/*.elf
+          build/**/*.bmp
+          build/**/*.jpg
+          build/**/*.png
+          build/**/*.tiff
+          build/**/*.raw
+          build/**/*.fnt
+          build/**/*.dat
+          build/**/*.ppm
