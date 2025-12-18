@@ -89,14 +89,14 @@ int render(GSGLOBAL *gsGlobal)
 #ifdef TEX_BG
 	bigtex.Filter = GS_FILTER_LINEAR;
 	bigtex.Delayed = 1;
-	gsKit_texture_jpeg(gsGlobal, &bigtex, "host:bigtex.jpg");
+	gsKit_texture_jpeg(gsGlobal, &bigtex, "bigtex.jpg");
 #endif
 
 #ifdef FHD_BG
 	fhdbg.Filter = GS_FILTER_LINEAR;
 	fhdbg.Delayed = 1;
 	fhdbg.Vram = GSKIT_ALLOC_ERROR;
-	gsKit_texture_jpeg(gsGlobal, &fhdbg, "host:fhdbg.jpg");
+	gsKit_texture_jpeg(gsGlobal, &fhdbg, "fhdbg.jpg");
 	gsKit_hires_prepare_bg(gsGlobal, &fhdbg);
 	gsKit_hires_set_bg(gsGlobal, &fhdbg);
 #endif

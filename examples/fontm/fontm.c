@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
 	gsFontM->Spacing = 0.95f;
 
 	test.Delayed = 1;
-	gsKit_texture_bmp(gsGlobal, &test, "host:test.bmp");
+	gsKit_texture_bmp(gsGlobal, &test, "test.bmp");
 	test.Filter = GS_FILTER_LINEAR;
 
 	gsKit_mode_switch(gsGlobal, GS_ONESHOT);

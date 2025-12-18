@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 #endif
 
 #ifdef HAVE_LIBPNG
-	if(gsKit_texture_png(gsGlobal, &Sprite, "host:texstream.png") < 0)
+	if(gsKit_texture_png(gsGlobal, &Sprite, "texstream.png") < 0)
 	{
 		printf("Loading Failed!\n");
 	}

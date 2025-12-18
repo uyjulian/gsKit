@@ -52,11 +52,11 @@ int main(int argc, char *argv[])
 	Tex1.PSM = GS_PSM_CT24;
 	Tex1.Filter = GS_FILTER_NEAREST;
 
-	gsKit_texture_raw(gsGlobal, &Tex1, "host:bitmap.raw");
+	gsKit_texture_raw(gsGlobal, &Tex1, "bitmap.raw");
 	printf("Texture 1 Height: %i\n",Tex1.Height);
 	printf("Texture 1 Width: %i\n",Tex1.Width);
 
-	gsKit_texture_bmp(gsGlobal, &Tex2, "host:bsdgirl.bmp");
+	gsKit_texture_bmp(gsGlobal, &Tex2, "bsdgirl.bmp");
 	printf("Texture 2 Height: %i\n",Tex2.Height);
 	printf("Texture 2 Width: %i\n",Tex2.Width);
 
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
 	printf("Texure 2 VRAM Range = 0x%X - 0x%X\n",Tex2.Vram, Tex2.Vram +gsKit_texture_size(Tex2.Width, Tex2.Height, Tex2.PSM) - 1);
 
 #ifdef HAVE_LIBJPEG
-	gsKit_texture_jpeg(gsGlobal, &Tex3, "host:ps2dev.jpg");
+	gsKit_texture_jpeg(gsGlobal, &Tex3, "ps2dev.jpg");
 
 	printf("Texture 3 Height: %i\n",Tex3.Height);
 	printf("Texture 3 Width: %i\n",Tex3.Width);

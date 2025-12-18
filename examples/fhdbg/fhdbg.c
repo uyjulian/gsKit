@@ -57,7 +57,7 @@ int main(int argc, char* argv[])
     // Load textures
     for (iTexId = 0; iTexId < TEXTURE_COUNT; iTexId++) {
         Tex[iTexId].Delayed = 1;
-        snprintf(filename, 80, "host:images/fhdbg_0%d.jpg", iTexId + 1);
+        snprintf(filename, 80, "images/fhdbg_0%d.jpg", iTexId + 1);
         gsKit_texture_jpeg(gsGlobal, &Tex[iTexId], filename);
         gsKit_hires_prepare_bg(gsGlobal, &Tex[iTexId]);
     }

@@ -61,8 +61,8 @@ int main(int argc, char *argv[])
 	// Load textures
 	tx128.Delayed = 1;
 	tx132.Delayed = 1;
-	gsKit_texture_png(gsGlobal, &tx128, "host:128x128.png");
-	gsKit_texture_png(gsGlobal, &tx132, "host:132x132.png");
+	gsKit_texture_png(gsGlobal, &tx128, "128x128.png");
+	gsKit_texture_png(gsGlobal, &tx132, "132x132.png");
 
 	gsKit_set_clamp(gsGlobal, GS_CMODE_CLAMP);
 	gsKit_set_test(gsGlobal, GS_ZTEST_OFF);
