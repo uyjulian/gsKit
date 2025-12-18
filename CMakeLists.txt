@@ -334,7 +334,41 @@ if(NOT SKIP_INSTALL_FILES AND NOT SKIP_INSTALL_ALL )
 	install(FILES ${GSKIT_PC} DESTINATION "${INSTALL_PKGCONFIG_DIR}")
 endif()
 
-if(NOT SKIP_BUILD_EXAMPLES)
+# All available examples
+set(GSKIT_SAMPLE_DIRS
+	alpha
+	atlas
+	basic
+	bigtex
+	coverflow
+	clut
+	clutcsm
+	cube
+	fb
+	fhdbg
+	font
+	fontm
+	modetest
+	modetesthires
+	pixelperfect
+	texstream
+	textures
+	vsync
+)
+set(GSKIT_SPECIAL_EXAMPLES hires linuz-texture png-texture)
+set(GSKIT_ALL_EXAMPLES ${GSKIT_SAMPLE_DIRS} ${GSKIT_SPECIAL_EXAMPLES})
+
+# Option to build specific examples (empty list = skip all, default = build all)
+set(BUILD_EXAMPLES "${GSKIT_ALL_EXAMPLES}" CACHE STRING "List of examples to build (e.g., -DBUILD_EXAMPLES='atlas;cube'). Empty list skips all examples.")
+
+if(BUILD_EXAMPLES)
+	# Validate requested examples
+	foreach(example IN LISTS BUILD_EXAMPLES)
+		if(NOT example IN_LIST GSKIT_ALL_EXAMPLES)
+			message(FATAL_ERROR "Example '${example}' not found. Available examples: ${GSKIT_ALL_EXAMPLES}")
+		endif()
+	endforeach()
+
 	set(CMAKE_EXECUTABLE_SUFFIX .elf)
 	set(GSKIT_SAMPLE_LIBS "")
 	list(APPEND GSKIT_SAMPLE_LIBS gskit_toolkit gskit dmakit ${GSKIT_EXTERNAL_LIBS})
@@ -349,70 +383,70 @@ if(NOT SKIP_BUILD_EXAMPLES)
 		file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/examples/${targetname}/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR} FILES_MATCHING REGEX "\\.(bmp|dat|fnt|jpg|png|ppm|raw|s|tiff)$")
 	endmacro (add_executable_example)
 
-	set(GSKIT_SAMPLE_DIRS "")
-	list(APPEND GSKIT_SAMPLE_DIRS
-		alpha
-		atlas
-		basic
-		bigtex
-		coverflow
-		clut
-		clutcsm
-		cube
-		fb
-		fhdbg
-		font
-		fontm
-		modetest
-		modetesthires
-		pixelperfect
-		texstream
-		textures
-		vsync
-	)
-
-	foreach(arg IN ITEMS ${GSKIT_SAMPLE_DIRS})
-		add_executable_example(${arg})
+	# Build standard examples from the list
+	foreach(example IN LISTS BUILD_EXAMPLES)
+		if(example IN_LIST GSKIT_SAMPLE_DIRS)
+			add_executable_example(${example})
+		endif()
 	endforeach()
 
-	target_link_libraries(cube
-		draw
-		math3d
-	)
-	set_property(TARGET modetest APPEND PROPERTY SOURCES examples/modetest/pad.c)
-	target_link_libraries(modetest
-		pad
-	)
-	set_property(TARGET modetesthires APPEND PROPERTY SOURCES examples/modetesthires/pad.c)
-	target_link_libraries(modetesthires
-		pad
-	)
+	# Additional configuration for specific examples
+	if(TARGET cube)
+		target_link_libraries(cube
+			draw
+			math3d
+		)
+	endif()
 
-	add_executable(hires
-		examples/hires/main.c
-	)
-	target_link_libraries(hires
-		${GSKIT_SAMPLE_LIBS}
-		draw
-		graph
-		math3d
-		packet
-		dma
-	)
+	if(TARGET modetest)
+		set_property(TARGET modetest APPEND PROPERTY SOURCES examples/modetest/pad.c)
+		target_link_libraries(modetest
+			pad
+		)
+	endif()
 
-	add_executable(linuz-texture
-		examples/linuz-texture/sample.c
-		examples/linuz-texture/testorig.s
-		examples/linuz-texture/texture.c
-	)
-	target_link_libraries(linuz-texture
-		${GSKIT_SAMPLE_LIBS}
-	)
+	if(TARGET modetesthires)
+		set_property(TARGET modetesthires APPEND PROPERTY SOURCES examples/modetesthires/pad.c)
+		target_link_libraries(modetesthires
+			pad
+		)
+	endif()
 
-	add_executable(png-texture
-		examples/png-texture/textures.c
-	)
-	target_link_libraries(png-texture
-		${GSKIT_SAMPLE_LIBS}
-	)
+	# Special examples with custom source configurations
+	if("hires" IN_LIST BUILD_EXAMPLES)
+		add_executable(hires
+			examples/hires/main.c
+		)
+		target_link_libraries(hires
+			${GSKIT_SAMPLE_LIBS}
+			draw
+			graph
+			math3d
+			packet
+			dma
+		)
+		file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/examples/hires/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR} FILES_MATCHING REGEX "\\.(bmp|dat|fnt|jpg|png|ppm|raw|s|tiff)$")
+	endif()
+
+	if("linuz-texture" IN_LIST BUILD_EXAMPLES)
+		add_executable(linuz-texture
+			examples/linuz-texture/sample.c
+			examples/linuz-texture/testorig.s
+			examples/linuz-texture/texture.c
+		)
+		target_link_libraries(linuz-texture
+			${GSKIT_SAMPLE_LIBS}
+		)
+		file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/examples/linuz-texture/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR} FILES_MATCHING REGEX "\\.(bmp|dat|fnt|jpg|png|ppm|raw|s|tiff)$")
+	endif()
+
+	if("png-texture" IN_LIST BUILD_EXAMPLES)
+		add_executable(png-texture
+			examples/png-texture/textures.c
+		)
+		target_link_libraries(png-texture
+			${GSKIT_SAMPLE_LIBS}
+		)
+		file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/examples/png-texture/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR} FILES_MATCHING REGEX "\\.(bmp|dat|fnt|jpg|png|ppm|raw|s|tiff)$")
+	endif()
 endif()

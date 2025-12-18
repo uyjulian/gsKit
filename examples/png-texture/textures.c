@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 
 	gsKit_clear(gsGlobal, White);
 #ifdef HAVE_LIBPNG
-	gsKit_texture_png(gsGlobal, &Tex1, "host:test.png");
+	gsKit_texture_png(gsGlobal, &Tex1, "test.png");
 	printf("Texture 1 Height: %i\n",Tex1.Height);
 	printf("Texture 1 Width: %i\n",Tex1.Width);
 

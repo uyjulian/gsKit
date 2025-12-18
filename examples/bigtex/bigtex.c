@@ -47,9 +47,9 @@ int main(int argc, char *argv[])
         bigtex.Filter = GS_FILTER_NEAREST;
         bigtex.Delayed = 1;
 
-	// gsKit_texture_raw(gsGlobal, &bigtex, "host:bigtex.raw");
-	gsKit_texture_bmp(gsGlobal, &bigtex, "host:bigtex.bmp");
-	// gsKit_texture_jpeg(gsGlobal, &bigtex, "host:bigtex.jpg");
+	// gsKit_texture_raw(gsGlobal, &bigtex, "bigtex.raw");
+	gsKit_texture_bmp(gsGlobal, &bigtex, "bigtex.bmp");
+	// gsKit_texture_jpeg(gsGlobal, &bigtex, "bigtex.jpg");
 
 
 	x = 0.0f;

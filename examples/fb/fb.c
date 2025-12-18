@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
 
 #ifdef USEBMP
 	backtex.Delayed = 0;
-	gsKit_texture_bmp(gsGlobal, &backtex, "host:bsdgirl.bmp");
+	gsKit_texture_bmp(gsGlobal, &backtex, "bsdgirl.bmp");
 #endif
 
 	/* print out useless debug information */

@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 	gsKit_init_screen(gsGlobal);
 #ifdef HAVE_LIBTIFF
 	Sprite.Delayed = 1;
-	if(gsKit_texture_tiff(gsGlobal, &Sprite, "host:alpha.tiff") < 0)
+	if(gsKit_texture_tiff(gsGlobal, &Sprite, "alpha.tiff") < 0)
 	{
 		printf("Loading Failed!\n");
 	}

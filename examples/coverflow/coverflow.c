@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
 	// Load textures
 	for (i = 0; i < TEXTURE_COUNT; i++) {
 		Tex[i].Delayed = 1;
-		snprintf(filename, 80, "host:covers/game%d_%d_%d_08bit.bmp", i+1, 512, 512);
+		snprintf(filename, 80, "covers/game%d_%d_%d_08bit.bmp", i+1, 512, 512);
 		gsKit_texture_bmp(gsGlobal, &Tex[i], filename);
 		Tex[i].Filter = GS_FILTER_LINEAR;
 	}
