@@ -540,8 +540,6 @@ void gsKit_hires_init_screen(GSGLOBAL *gsGlobal, int passCount)
 		printf("gsKit_hires: Padding front buffer with %dKiB \n", iAlign/1024);
 		gsKit_vram_alloc(gsGlobal, iAlign, GSKIT_ALLOC_SYSBUFFER);
 	}
-	// first useable address for textures
-	gsGlobal->TexturePointer = gsGlobal->CurrentPointer;
 
 	// Restore depth buffer setting
 	gsGlobal->ZBuffering = ZBuffering_backup;
@@ -589,6 +587,9 @@ void gsKit_hires_init_screen(GSGLOBAL *gsGlobal, int passCount)
 		// 3rd buffer is fixed to this depth buffer
 		__buffer[2].addr = gsGlobal->ZBuffer;
 	}
+
+	// first useable address for textures (after any potential Zbuffer allocation)
+	gsGlobal->TexturePointer = gsGlobal->CurrentPointer;
 
 	//
 	// What buffers need to be used in what pass? That's what the pass array is for.
